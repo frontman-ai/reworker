@@ -23,17 +23,17 @@ help: ## Display this help message
 
 build: ## Build the ReScript project
 	@printf "$(YELLOW)Building ReScript project...$(RESET)\n"
-	npx rescript
+	yarn rescript
 	@printf "$(GREEN)Build complete!$(RESET)\n"
 
 clean: ## Clean build artifacts
 	@printf "$(YELLOW)Cleaning build artifacts...$(RESET)\n"
-	npx rescript clean
+	yarn rescript clean
 	@printf "$(GREEN)Clean complete!$(RESET)\n"
 
 dev: ## Start ReScript in watch mode
 	@printf "$(YELLOW)Starting ReScript watch mode...$(RESET)\n"
-	npx rescript watch
+	yarn rescript watch
 
 test: build ## Run all tests
 	@printf "$(YELLOW)Running tests...$(RESET)\n"
@@ -47,7 +47,7 @@ test-browser: build ## Run cross-origin browser tests
 
 analyze: build ## Run ReScript dead code analysis
 	@printf "$(YELLOW)Analyzing ReScript code...$(RESET)\n"
-	npx rescript-tools reanalyze -config -ci
+	yarn rescript-tools reanalyze -config -ci
 	@printf "$(GREEN)Analysis complete!$(RESET)\n"
 
 lint: ## Run linters and code formatters
@@ -57,17 +57,17 @@ lint: ## Run linters and code formatters
 
 install: ## Install project dependencies
 	@printf "$(YELLOW)Installing dependencies...$(RESET)\n"
-	npm install
+	yarn install --immutable
 	@printf "$(GREEN)Dependencies installed!$(RESET)\n"
 
 format: ## Format ReScript code
 	@printf "$(YELLOW)Formatting ReScript code...$(RESET)\n"
-	npx rescript format
+	yarn rescript format
 	@printf "$(GREEN)Code formatted!$(RESET)\n"
 
 publish: check ## Publish package to npm
 	@printf "$(YELLOW)Publishing to npm...$(RESET)\n"
-	npm publish
+	yarn npm publish
 	@printf "$(GREEN)Package published!$(RESET)\n"
 
 check: test analyze ## Run all checks (build + test + analysis)

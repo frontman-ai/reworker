@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- Use Yarn 4.18.0 for dependency installation, development commands, and CI.
+- Prepare Git dependencies with Yarn without requiring the npm executable.
 - Replace `Runtime.Make` and window transport functors with opaque, independently stateful transport and runtime values
 - Require `Runtime.make(transport, ~limits, ~handler)`; constructing the runtime consumes and starts the transport
 - Replace raw transport records with `Runtime.makeTransport` for single connections and `Runtime.makeDynamicTransport` for transport-managed reconnects

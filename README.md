@@ -5,9 +5,14 @@ automatic request and cast chunking. Zero runtime dependencies.
 
 ## Install
 
+Install the source package from Git with Yarn:
+
 ```bash
-npm install @bluehotdog/reworker
+yarn add '@bluehotdog/reworker@https://github.com/frontman-ai/reworker.git#head=main'
 ```
+
+Yarn records the resolved commit in `yarn.lock`. The consuming project compiles
+the ReScript sources.
 
 ## Usage
 

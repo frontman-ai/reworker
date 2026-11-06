@@ -23,21 +23,23 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --immutable
 
       - name: Check ReScript formatting
-        run: npx rescript format --check
+        run: yarn rescript format --check
 
       - name: Build with strict ReScript compilation
         run: |
           echo "Building with ReScript..."
-          npx rescript
+          yarn rescript
 
       - name: Run ReScript dead code analysis
-        run: npx rescript-tools reanalyze -config -ci
+        run: yarn rescript-tools reanalyze -config -ci
 
       - name: Run tests
         run: |
@@ -71,15 +73,17 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '20.x'
-          cache: 'npm'
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies with ReScript ${{ matrix.rescript-version }}
         run: |
-          npm ci
-          npm install --no-save rescript@${{ matrix.rescript-version }}
+          yarn install --immutable
+          yarn add --dev rescript@${{ matrix.rescript-version }}
 
       - name: Build with ReScript ${{ matrix.rescript-version }}
-        run: npx rescript
+        run: yarn rescript
 
       - name: Test with ReScript ${{ matrix.rescript-version }}
         run: make test
@@ -96,13 +100,15 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '20.x'
-          cache: 'npm'
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --immutable
 
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: yarn playwright install --with-deps chromium
 
       - name: Run browser tests
         run: make test-browser
@@ -119,13 +125,15 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '20.x'
-          cache: 'npm'
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --immutable
 
       - name: Security audit
-        run: npm audit --audit-level moderate
+        run: yarn npm audit --recursive --severity moderate
 
       - name: Check for TODO/FIXME in source code
         run: |
@@ -148,4 +156,4 @@ jobs:
           echo "✅ Package configuration is consistent"
 
       - name: Inspect package contents
-        run: npm pack --dry-run
+        run: yarn pack --dry-run
