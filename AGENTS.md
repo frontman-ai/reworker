@@ -29,12 +29,13 @@ chunked message passing in workers and Manifest V3 browser extensions.
 
 ## Workflow
 
-- Install dependencies with `npm ci`.
+- Enable Corepack with `corepack enable`, then install dependencies with
+  `yarn install --immutable` (Yarn 4.18.0).
 - Compile with `make build`; warnings are treated as errors.
 - Run the complete test suite with `make test`.
 - Run dead code analysis with `make analyze`.
 - Format ReScript sources with `make format` and check formatting with
-  `npx rescript format --check`.
+  `yarn rescript format --check`.
 - Edit `.res` and `.resi` sources, not generated `.res.mjs` files or `lib/`
   artifacts.
 - Add new test modules to `src/TestRunner.res` so `make test` executes them.

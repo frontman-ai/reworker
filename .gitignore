@@ -6,6 +6,7 @@ Thumbs.db
 /node_modules/
 .npm
 .yarn-integrity
+/.yarn/
 
 # ReScript compilation output
 /lib/
